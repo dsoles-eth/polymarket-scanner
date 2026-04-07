@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  com.dsoles.polymarket-scanner.plist
+  =====================================
+  macOS launchd agent that runs scanner.py every 15 minutes.
+
+  Installation:
+    1. Edit WorkingDirectory and ProgramArguments paths below to match your setup.
+    2. Copy to ~/Library/LaunchAgents/
+    3. Load it:
+         launchctl load ~/Library/LaunchAgents/com.dsoles.polymarket-scanner.plist
+    4. To unload:
+         launchctl unload ~/Library/LaunchAgents/com.dsoles.polymarket-scanner.plist
+
+  Logs are written to /tmp/polymarket-scanner.{out,err}.log
+-->
+<plist version="1.0">
+<dict>
+
+  <!-- Unique label for this launchd job -->
+  <key>Label</key>
+  <string>com.dsoles.polymarket-scanner</string>
+
+  <!-- Command to run (adjust paths to your Python venv / project dir) -->
+  <key>ProgramArguments</key>
+  <array>
+    <!-- Use the Python inside your venv for dependency isolation -->
+    <string>/Users/clawbot/.openclaw/workspace/agents/ceo/github/polymarket-scanner/venv/bin/python</string>
+    <string>/Users/clawbot/.openclaw/workspace/agents/ceo/github/polymarket-scanner/scanner.py</string>
+  </array>
+
+  <!-- Run every 900 seconds = 15 minutes -->
+  <key>StartInterval</key>
+  <integer>900</integer>
+
+  <!-- Working directory (must contain .env) -->
+  <key>WorkingDirectory</key>
+  <string>/Users/clawbot/.openclaw/workspace/agents/ceo/github/polymarket-scanner</string>
+
+  <!-- Stdout log -->
+  <key>StandardOutPath</key>
+  <string>/tmp/polymarket-scanner.out.log</string>
+
+  <!-- Stderr log -->
+  <key>StandardErrorPath</key>
+  <string>/tmp/polymarket-scanner.err.log</string>
+
+  <!-- Restart on crash -->
+  <key>KeepAlive</key>
+  <false/>
+
+  <!-- Run at load time if the interval has already elapsed -->
+  <key>RunAtLoad</key>
+  <false/>
+
+  <!-- Low priority to avoid impacting other processes -->
+  <key>ProcessType</key>
+  <string>Background</string>
+
+</dict>
+</plist>
