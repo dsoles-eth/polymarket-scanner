@@ -27,17 +27,18 @@
   <key>ProgramArguments</key>
   <array>
     <!-- Use the Python inside your venv for dependency isolation -->
-    <string>/Users/clawbot/.openclaw/workspace/agents/ceo/github/polymarket-scanner/venv/bin/python</string>
-    <string>/Users/clawbot/.openclaw/workspace/agents/ceo/github/polymarket-scanner/scanner.py</string>
+    <!-- UPDATE THIS PATH to match your install location -->
+    <string>/path/to/your/venv/bin/python</string>
+    <string>/path/to/polymarket-scanner/scanner.py</string>
   </array>
 
   <!-- Run every 900 seconds = 15 minutes -->
   <key>StartInterval</key>
   <integer>900</integer>
 
-  <!-- Working directory (must contain .env) -->
+  <!-- Working directory (must contain .env) — UPDATE THIS PATH -->
   <key>WorkingDirectory</key>
-  <string>/Users/clawbot/.openclaw/workspace/agents/ceo/github/polymarket-scanner</string>
+  <string>/path/to/polymarket-scanner</string>
 
   <!-- Stdout log -->
   <key>StandardOutPath</key>
